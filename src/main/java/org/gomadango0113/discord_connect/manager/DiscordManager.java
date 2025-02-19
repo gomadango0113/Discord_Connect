@@ -41,6 +41,10 @@ public class DiscordManager extends ListenerAdapter {
         }
     }
 
+    public static JDA getJDA() {
+        return jda;
+    }
+
     public static TextChannel getSendChannel() {
         String channel_id = config.getString("send_channel_id");
         return jda.getTextChannelById(channel_id);
