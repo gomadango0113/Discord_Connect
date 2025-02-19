@@ -4,10 +4,13 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.interactions.commands.OptionType;
+import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.gomadango0113.discord_connect.Main;
+import org.gomadango0113.discord_connect.commands.discord.DiscordJoinCommand;
 import org.gomadango0113.discord_connect.listeners.discord.DiscordSendListener;
 
 public class DiscordManager extends ListenerAdapter {
@@ -28,9 +31,12 @@ public class DiscordManager extends ListenerAdapter {
                     .enableIntents(GatewayIntent.GUILD_MEMBERS, GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MESSAGES)
                     .addEventListeners(new DiscordManager())
                     .addEventListeners(new DiscordSendListener())
+                    .addEventListeners(new DiscordJoinCommand())
                     .build();
 
             jda.updateCommands()
+                    .addCommands(Commands.slash("mc-join", "マイクラ鯖へ参加するコマンド")
+                            .addOption(OptionType.STRING, "mcid", "マイクラのID（例：Blockgrass）"))
                     .queue();
 
             jda.awaitReady();
