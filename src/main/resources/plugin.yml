@@ -1,0 +1,3 @@
+name: Discord_Connect
+version: '${project.version}'
+main: org.gomadango0113.discord_connect.Main
