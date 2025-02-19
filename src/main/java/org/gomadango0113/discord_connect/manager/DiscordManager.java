@@ -12,6 +12,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.gomadango0113.discord_connect.Main;
 import org.gomadango0113.discord_connect.commands.discord.DiscordJoinCommand;
 import org.gomadango0113.discord_connect.listeners.discord.DiscordSendListener;
+import org.gomadango0113.discord_connect.listeners.discord.ModalListener;
 
 public class DiscordManager extends ListenerAdapter {
 
@@ -30,7 +31,7 @@ public class DiscordManager extends ListenerAdapter {
             jda = JDABuilder.createDefault(token)
                     .enableIntents(GatewayIntent.GUILD_MEMBERS, GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MESSAGES)
                     .addEventListeners(new DiscordManager())
-                    .addEventListeners(new DiscordSendListener())
+                    .addEventListeners(new DiscordSendListener(), new ModalListener())
                     .addEventListeners(new DiscordJoinCommand())
                     .build();
 

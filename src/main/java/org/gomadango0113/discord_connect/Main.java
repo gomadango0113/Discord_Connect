@@ -4,6 +4,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.gomadango0113.discord_connect.listeners.mc.PlayerChatListener;
+import org.gomadango0113.discord_connect.listeners.mc.PlayerJoinListener;
 import org.gomadango0113.discord_connect.manager.DiscordManager;
 
 public final class Main extends JavaPlugin {
@@ -37,6 +38,7 @@ public final class Main extends JavaPlugin {
         PluginManager plm = getServer().getPluginManager();
 
         plm.registerEvents(new PlayerChatListener(), this);
+        plm.registerEvents(new PlayerJoinListener(), this);
     }
 
     public static Main getInstance() {

@@ -5,6 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
+import org.gomadango0113.discord_connect.manager.VerifyManager;
 import org.gomadango0113.discord_connect.manager.WhiteListManager;
 
 import java.io.IOException;
@@ -16,8 +17,12 @@ public class PlayerJoinListener implements Listener {
         Player player = event.getPlayer();
 
         if (!WhiteListManager.isWhiteList(player)) {
+            VerifyManager.startVerify(player);
+            int code = VerifyManager.getCode(player);
+
             event.setResult(PlayerLoginEvent.Result.KICK_WHITELIST);
-            event.setKickMessage("あなたはホワイトリストに登録されていません。");
+            event.setKickMessage("あなたはホワイトリストに登録されていません。" + "\n" +
+                    "コード：" + code);
         }
     }
 
