@@ -1,17 +1,43 @@
 package org.gomadango0113.discord_connect;
 
+import org.bukkit.ChatColor;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.gomadango0113.discord_connect.manager.DiscordManager;
 
 public final class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
+        registerListener();
+        registerCommand();
+        saveDefaultConfig();
 
+        try {
+            DiscordManager.startBot();
+        }
+        catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        getLogger().info( "[DiscordConnect] プラグインの準備ができました!");
     }
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        DiscordManager.stopBot();
     }
+
+    private void registerCommand() {
+
+    }
+
+    private void registerListener() {
+        PluginManager plm = getServer().getPluginManager();
+    }
+
+    public static Main getInstance() {
+        return getPlugin(Main.class);
+    }
+
 }
