@@ -10,6 +10,9 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.bukkit.Bukkit;
 import org.gomadango0113.discord_connect.manager.DiscordManager;
+import org.gomadango0113.discord_connect.manager.FormatManager;
+
+import java.text.Format;
 
 public class DiscordSendListener extends ListenerAdapter {
 
@@ -24,7 +27,8 @@ public class DiscordSendListener extends ListenerAdapter {
         if (member != null) {
             User user = member.getUser();
             if (self.getIdLong() != user.getIdLong()) {
-                Bukkit.broadcastMessage("[Discord] <" + user.getName() + ">:" + message.getContentRaw());
+                String format = FormatManager.getFormatMessage(user.getName(), message.getContentRaw());
+                Bukkit.broadcastMessage("[Discord]" + format);
             }
         }
     }

@@ -7,6 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.gomadango0113.discord_connect.manager.DiscordManager;
+import org.gomadango0113.discord_connect.manager.FormatManager;
 
 public class PlayerChatListener implements Listener {
 
@@ -17,8 +18,9 @@ public class PlayerChatListener implements Listener {
 
         if (DiscordManager.getJDA() != null) {
             TextChannel send_channel = DiscordManager.getSendChannel();
+            String format = FormatManager.getFormatMessage(player.getName(), message);
 
-            send_channel.sendMessage("[Minecraft]<" + player.getName() + ">: " + message).queue();
+            send_channel.sendMessage("[Minecraft]" + format).queue();
         }
     }
 }

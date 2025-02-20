@@ -28,7 +28,7 @@ public class VerifyManager {
                     @Override
                     public void run() {
                         if (verify_map.containsKey(uuid)) {
-                            if (restart_verify_time == 15) {
+                            if (restart_verify_time == 60*15) {
                                 int code = new Random().nextInt(10000);
                                 verify_map.put(uuid, code);
                                 restart_verify_time=0;

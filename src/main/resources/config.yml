@@ -1,3 +1,4 @@
 #Discord
 bot_token: ""
 send_channel_id: ""
+send_format: "<{#%PlayerName}>:{#%Message}"
